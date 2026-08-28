@@ -1,0 +1,337 @@
+\documentclass[doublespace]{interact}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{setspace}
+\doublespacing
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{natbib}
+\bibpunct[: ]{(}{)}{;}{a}{}{,}
+\usepackage{booktabs,tabularx,graphicx,float}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newcommand{\HM}{H(M)}
+
+\begin{document}
+
+\title{Mortality Accumulation before the Modal Age at Death}
+\date{}
+\maketitle
+
+\begin{abstract}
+The modal age at death identifies where deaths are most concentrated, but it does not describe the mortality accumulated before that age is reached. We develop this distinction using cumulative hazard at the modal age, $H(M)$. The conventional mode is characterized locally by $\mu'(M)=\mu(M)^2$, whereas $H(M)=\int_0^M\mu(a)\,da$ depends on the entire preceding mortality schedule. Hence populations can have the same modal age while reaching it through different mortality trajectories. Under Gompertz mortality, $H(M)=1-\alpha/\beta$, which approaches one when baseline mortality is small relative to the rate of senescent increase. This motivates the reference age $M_H=H^{-1}(1)$ and the gap $\Delta_M=M-M_H$, with $\Delta_M\approx[H(M)-1]/\mu(M)$. Using period life tables from the Human Mortality Database, we compare populations with nearly identical modal ages and examine whether their accumulated mortality nevertheless differs. The framework distinguishes convergence in longevity endpoints from convergence in the mortality paths leading to them.
+\end{abstract}
+
+\begin{keywords}
+modal age at death; cumulative hazard; mortality trajectories; longevity; Gompertz mortality; Human Mortality Database
+\end{keywords}
+
+\section{Introduction}
+
+The modal age at death has become an important indicator of adult longevity because it identifies the age at which deaths are most concentrated and is comparatively insensitive to mortality at young ages \citep{Kannisto2001,CanudasRomo2008,HoriuchiEtAl2013}. It has been used to study shifting mortality, longevity extension, and changes in the age-at-death distribution \citep{CheungEtAl2005,CheungRobine2007,CanudasRomo2010}. Yet the modal age answers a specific question: \emph{where} are deaths concentrated? It does not necessarily tell us how much mortality a population has experienced before reaching that age.
+
+This paper asks a simple question:
+
+\begin{quote}
+\textbf{Do populations with the same modal age at death reach it after accumulating the same amount of mortality?}
+\end{quote}
+
+The distinction is demographic rather than merely mathematical. Two populations can both have a modal age near 85 years while having experienced very different mortality at earlier ages. In one, most members may survive to the modal region; in another, substantially more mortality may have accumulated before deaths become maximally concentrated. The same longevity endpoint can therefore be reached through different mortality histories.
+
+The natural quantity for describing that history is cumulative hazard,
+\begin{equation}
+H(x)=\int_0^x \mu(a)\,da,
+\end{equation}
+where $\mu(x)$ is the force of mortality. Because survival is $S(x)=\exp[-H(x)]$, the value $H(M)$ has a direct demographic interpretation: it determines the proportion of the life-table population surviving to the modal age,
+\begin{equation}
+S(M)=e^{-H(M)}.
+\end{equation}
+
+Our argument rests on a simple contrast. The modal age is a \emph{local} property of the mortality schedule, whereas cumulative hazard at the mode is a \emph{path-dependent} quantity. The local mode condition $\mu'(M)=\mu(M)^2$ is established in the modal-age literature, notably by \citet{CanudasRomo2008}, and is closely related to the Gompertz reparameterization in terms of the modal age developed by \citet{MissovEtAl2015}. We use those results as the starting point rather than claiming them as new. Our contribution is to ask what the local condition leaves unidentified: the mortality accumulated before the mode.
+
+Under Gompertz mortality the two dimensions become tightly linked. We show that $H(M)=1-\alpha/\beta$, so $H(M)$ approaches one when baseline mortality is low relative to the rate of mortality increase. This provides a benchmark rather than a universal identity. It also connects the mode to an age defined by a survival level. Following the broader survival-age perspective of \citet{AlvarezVaupel2023}, define $M_H=H^{-1}(1)$, equivalent to the age at which survival equals $e^{-1}$. We then use the chronological gap $\Delta_M=M-M_H$ as an age-scale representation of whether cumulative mortality at the mode lies above or below one.
+
+Empirically, the paper shifts attention away from asking whether $M_H$ reproduces $M$. Instead, it conditions on $M$ and asks how much $H(M)$ can vary. Using Human Mortality Database period life tables, we identify population-years with nearly identical modal ages, compare their cumulative hazards and survival to the mode, and visualize the age-specific mortality trajectories that generate those differences. This distinction between \emph{endpoint convergence} and \emph{trajectory convergence} provides the central demographic interpretation.
+
+\section{Formal framework}
+
+\subsection{Life-table identities}
+
+Let $T\geq0$ denote age at death, with survival function $S(x)=P(T>x)$ and force of mortality $\mu(x)$. Define cumulative hazard
+\begin{equation}
+H(x)=\int_0^x\mu(a)\,da.
+\end{equation}
+Then
+\begin{equation}
+S(x)=e^{-H(x)},
+\end{equation}
+and the density of deaths is
+\begin{equation}
+d(x)=\mu(x)S(x)=\mu(x)e^{-H(x)}.
+\end{equation}
+These are standard survival and life-table identities; our use of cumulative hazard follows conventional demographic and survival-analysis notation.
+
+Let $M$ be a unique interior adult mode of $d(x)$.
+
+\subsection{The modal age is locally determined}
+
+Differentiating the death density,
+\begin{align}
+d'(x)
+&=\mu'(x)e^{-H(x)}+\mu(x)\frac{d}{dx}e^{-H(x)}\\
+&=e^{-H(x)}\{\mu'(x)-\mu(x)^2\}.
+\end{align}
+At an interior mode, $d'(M)=0$. Since $e^{-H(M)}>0$,
+\begin{equation}
+\boxed{\mu'(M)=\mu(M)^2.}
+\end{equation}
+This condition is not new; it is central to the formal analysis of the modal age in \citet{CanudasRomo2008} and subsequent work including \citet{MissovEtAl2015}. Dividing by $\mu(M)>0$ gives
+\begin{equation}
+\boxed{\left.\frac{d\log\mu(x)}{dx}\right|_{x=M}=\mu(M).}
+\end{equation}
+The left-hand side is the proportional rate of mortality increase with age, closely related to the ageing-rate perspective used by \citet{HoriuchiCoale1990}. Demographically, the mode occurs where mortality is increasing rapidly enough to raise the number of deaths with age, but survivor depletion has become strong enough to offset that increase.
+
+The crucial point for this paper is what does \emph{not} appear in the condition: mortality at ages below $M$. The location of the mode is pinned down locally by $\mu(M)$ and $\mu'(M)$.
+
+\subsection{Cumulative mortality at the mode}
+
+Now define
+\begin{equation}
+\boxed{H(M)=\int_0^M\mu(a)\,da.}
+\end{equation}
+Unlike the modal condition, $H(M)$ depends on the entire hazard path before $M$. It is therefore possible for mortality schedules to share a modal age while differing substantially in accumulated mortality.
+
+\begin{proposition}[Same modal age does not identify cumulative mortality]
+Equality of modal ages does not imply equality of cumulative hazards at the mode. In general,
+\[
+M_1=M_2 \not\Rightarrow H_1(M_1)=H_2(M_2).
+\]
+\end{proposition}
+
+\noindent\textit{Reason.} The first-order condition for an interior mode restricts the hazard and its derivative at $M$, whereas $H(M)$ is an integral over all ages from 0 to $M$. Mortality schedules can therefore coincide in a neighbourhood of $M$ while differing at earlier ages, preserving the same local modal condition but changing the integral. For sufficiently small perturbations away from the modal neighbourhood, uniqueness of the global adult mode is also preserved by continuity.
+
+The demographic implication is immediate. $M$ tells us where deaths concentrate. $H(M)$ tells us how much mortality has accumulated before they concentrate there.
+
+Because
+\begin{equation}
+S(M)=e^{-H(M)},
+\end{equation}
+$H(M)$ also has a direct survival interpretation. For example, $H(M)=0.8$ implies $S(M)=0.449$, whereas $H(M)=1.2$ implies $S(M)=0.301$. Two populations can therefore share the same modal age but differ substantially in the proportion reaching it.
+
+\section{The Gompertz benchmark}
+
+The Gompertz force of mortality \citep{Gompertz1825,PollardValkovics1992} is
+\begin{equation}
+\mu(x)=\alpha e^{\beta x}, \qquad \alpha,\beta>0.
+\end{equation}
+Its derivative is $\mu'(x)=\beta\mu(x)$. Applying the modal condition credited above,
+\begin{equation}
+\beta\mu(M)=\mu(M)^2,
+\end{equation}
+so
+\begin{equation}
+\mu(M)=\beta.
+\end{equation}
+Therefore
+\begin{equation}
+\boxed{M=\frac{1}{\beta}\log\left(\frac{\beta}{\alpha}\right).}
+\end{equation}
+This expression is standard in work reparameterizing Gompertz mortality by the modal age; see \citet{MissovEtAl2015}.
+
+The cumulative hazard is
+\begin{equation}
+H(x)=\frac{\alpha}{\beta}\left(e^{\beta x}-1\right).
+\end{equation}
+Evaluating at the mode and using $e^{\beta M}=\beta/\alpha$ gives
+\begin{align}
+H(M)
+&=\frac{\alpha}{\beta}\left(\frac{\beta}{\alpha}-1\right)\\
+&=\boxed{1-\frac{\alpha}{\beta}}.
+\end{align}
+Thus $H(M)$ is not exactly one under a Gompertz hazard starting at age zero. It approaches one when $\alpha/\beta$ is small. This is the benchmark used in the remainder of the paper.
+
+\subsection{The cumulative-hazard reference age}
+
+Define
+\begin{equation}
+\boxed{M_H=H^{-1}(1).}
+\end{equation}
+Then $H(M_H)=1$ and
+\begin{equation}
+S(M_H)=e^{-1}\approx0.368.
+\end{equation}
+The age $M_H$ is therefore an age defined by a survival level; it belongs conceptually to the family of survival-based ages discussed by \citet{AlvarezVaupel2023}. We use it as a fixed cumulative-mortality reference, not as a replacement definition of the mode.
+
+For Gompertz mortality,
+\begin{equation}
+1=\frac{\alpha}{\beta}(e^{\beta M_H}-1),
+\end{equation}
+which yields
+\begin{equation}
+M_H=\frac{1}{\beta}\log\left(1+\frac{\beta}{\alpha}\right).
+\end{equation}
+Subtracting the modal age,
+\begin{equation}
+M_H-M=\frac{1}{\beta}\log\left(1+\frac{\alpha}{\beta}\right)>0.
+\end{equation}
+Hence, defining
+\begin{equation}
+\Delta_M=M-M_H,
+\end{equation}
+we have the exact Gompertz result
+\begin{equation}
+\boxed{\Delta_M=-\frac{1}{\beta}\log\left(1+\frac{\alpha}{\beta}\right)<0.}
+\end{equation}
+Using $\log(1+z)=z-z^2/2+O(z^3)$,
+\begin{equation}
+\boxed{\Delta_M\approx-\frac{\alpha}{\beta^2}.}
+\end{equation}
+The negative sign is important: under a pure Gompertz schedule beginning at age zero, $H(M)<1$, so $M<M_H$. In low-mortality settings the difference is small.
+
+\section{From cumulative hazard to chronological distance}
+
+Because $H(x)$ is strictly increasing whenever $\mu(x)>0$, the ordering of $M$ and $M_H$ follows exactly from the value of $H(M)$.
+
+\begin{proposition}[Exact sign relation]
+If $\mu(x)>0$, then
+\begin{equation}
+\boxed{\operatorname{sign}(M-M_H)=\operatorname{sign}[H(M)-1].}
+\end{equation}
+\end{proposition}
+
+Thus $H(M)>1$ if and only if $M>M_H$; $H(M)=1$ if and only if $M=M_H$; and $H(M)<1$ if and only if $M<M_H$. This result requires no Taylor approximation.
+
+To approximate the magnitude of the chronological difference, expand $H(M_H)=H(M-\Delta_M)$ around $M$:
+\begin{align}
+1
+&=H(M)-\mu(M)\Delta_M+\frac{1}{2}\mu'(M)\Delta_M^2+O(\Delta_M^3).
+\end{align}
+Using the established modal identity $\mu'(M)=\mu(M)^2$,
+\begin{equation}
+H(M)-1
+=\mu(M)\Delta_M-\frac{1}{2}\mu(M)^2\Delta_M^2+O(\Delta_M^3).
+\end{equation}
+To first order,
+\begin{equation}
+\boxed{\Delta_M\approx\frac{H(M)-1}{\mu(M)}.}
+\end{equation}
+This approximation is a derivation in the present paper obtained by expanding cumulative hazard around the conventional mode and substituting the previously established modal identity. Its demographic interpretation is straightforward: the numerator measures excess or deficient cumulative mortality at the mode relative to the $H=1$ benchmark; dividing by the hazard at the mode translates that difference into approximate years of age.
+
+A second-order inversion is also available. Let $A=H(M)-1$ and $z=\mu(M)\Delta_M$. Then $A=z-z^2/2+O(z^3)$, so $z=A+A^2/2+O(A^3)$. Hence
+\begin{equation}
+\Delta_M\approx\frac{H(M)-1+\frac12[H(M)-1]^2}{\mu(M)}.
+\end{equation}
+We retain the first-order expression in the main text because it is easier to interpret and reserve the second-order approximation as a robustness check.
+
+\section{Alternative mortality regimes}
+
+The Gompertz model is a benchmark, not a universal description. Background mortality, late-life mortality deceleration, and unobserved frailty can alter the relation between the local modal condition and accumulated mortality. These mechanisms are represented by Gompertz--Makeham, Kannisto, and gamma-frailty schedules, respectively \citep{ThatcherKannistoVaupel1998,VaupelMantonStallard1979,VaupelYashin1985,Missov2013,CastellaresEtAl2020}.
+
+The complete analytical derivations for these models are placed in the Appendix. This choice is deliberate. The main demographic point does not depend on memorizing model-specific formulas: departures from a Gompertz-like path can move $H(M)$ away from one even when the modal age changes little. The models illustrate different ways in which the path to a given modal age can change.
+
+\section{Data and empirical strategy}
+
+\subsection{Data}
+
+We use sex-specific period life tables from the Human Mortality Database \citep{HMD}. The core application includes Sweden, France, Italy, Japan, and the United States, with women and men analyzed separately. Sweden provides the long historical series, while the multi-country comparison asks whether similar contemporary or historical modal ages correspond to similar cumulative mortality histories.
+
+For each country $c$, sex $s$, and year $t$, we estimate the adult modal age $M_{cst}$ from the life-table distribution of deaths over ages 30--110. Because estimation of the modal age from discrete life-table deaths requires smoothing, and because smoothing choices can affect modal estimates \citep{OuelletteBourbeau2011,Camarda2012}, the baseline uses a smoothing spline fitted to the log death distribution. We retain the raw discrete mode and repeat the analysis under alternative smoothing parameters as sensitivity checks.
+
+Cumulative hazard is calculated from life-table survival rather than by numerically summing $m_x$:
+\begin{equation}
+H(x)=-\log\left(\frac{\ell(x)}{\ell(0)}\right).
+\end{equation}
+This ensures exact internal consistency between cumulative hazard and the life-table survival schedule. $H(M)$ is obtained by interpolation at the estimated continuous modal age. We then calculate
+\begin{equation}
+S(M)=e^{-H(M)}, \qquad M_H=H^{-1}(1), \qquad \Delta_M=M-M_H.
+\end{equation}
+
+\subsection{Empirical question 1: how did $M$ and $H(M)$ change over the mortality transition?}
+
+We first use Sweden to trace the historical evolution of $M_t$ and $H_t(M_t)$. This separates changes in the chronological location of modal deaths from changes in mortality accumulated before that location. A decline in $H(M)$ with little movement in $M$, for example, would indicate substantial improvement in survival before the modal region without an equivalent extension of modal longevity.
+
+\subsection{Empirical question 2: same modal age, different mortality history?}
+
+The central analysis conditions directly on the modal age. We form pairs of population-years satisfying
+\begin{equation}
+|M_i-M_j|\leq0.25 \text{ years},
+\end{equation}
+and calculate
+\begin{equation}
+D_H=|H_i(M_i)-H_j(M_j)|.
+\end{equation}
+We report the pairs with the largest $D_H$ among those with nearly equal modal ages. A stricter comparison additionally restricts the calendar-year difference to at most five years and requires different countries. This prevents the illustrative comparison from being selected merely because it spans distant historical regimes.
+
+The matched-pair approach is intentionally transparent. It does not require a regression model to establish the central fact. If two observations have essentially the same $M$ but substantially different $H(M)$, then modal longevity alone does not identify the accumulated mortality history.
+
+\subsection{Empirical question 3: is the matched-pair result systematic?}
+
+To move beyond selected examples, we group observations into 0.5-year modal-age bands and calculate the mean, range, and standard deviation of $H(M)$ within each band. The quantity
+\begin{equation}
+\mathrm{SD}\{H(M)\mid M\}
+\end{equation}
+provides a simple descriptive measure of heterogeneity in mortality histories among populations with similar modal longevity.
+
+We interpret declining conditional dispersion at older modal ages as evidence of convergence not only in longevity endpoints but also in the mortality paths leading to them. Persistent dispersion would indicate that similar modal longevity continues to conceal distinct mortality regimes.
+
+\subsection{Empirical question 4: does the formal approximation hold?}
+
+Finally, we evaluate
+\begin{equation}
+\Delta_M\approx\frac{H(M)-1}{\mu(M)}
+\end{equation}
+in observed life tables. This is a validation of the age-scale interpretation of $\Delta_M$, not the main substantive test. The exact sign relation is checked for every observation as an internal diagnostic.
+
+\section{Results}
+
+\subsection{The long-run Swedish transition}
+
+\textit{To be drafted after the empirical output is available. The first paragraph will report the joint movement of $M$ and $H(M)$, distinguish early improvements in survival from later movement of the modal endpoint, and compare women and men. Figure~1/3 output will determine the final interpretation.}
+
+\subsection{Nearly identical modal ages, different cumulative mortality}
+
+\textit{To be drafted from the algorithmically selected matched pairs. We will report the exact modal-age difference, difference in $H(M)$, survival to the mode in each population, and the age pattern of mortality generating the divergence. No substantive direction is assumed in advance.}
+
+\subsection{Conditional heterogeneity in $H(M)$}
+
+\textit{To be drafted from the modal-age-bin results. The main question is whether dispersion in $H(M)$ conditional on $M$ shrinks, persists, or changes non-monotonically as modal longevity increases.}
+
+\subsection{Formal diagnostic and robustness}
+
+\textit{To be drafted from the Taylor-approximation and smoothing-sensitivity outputs. These results will support the formal interpretation but will remain secondary to the demographic findings.}
+
+\section{Discussion}
+
+\textit{The Discussion is intentionally not pre-written. It will be organized around the observed results rather than anticipated findings. The planned structure is: (1) what equal modal ages do and do not imply; (2) whether mortality-transition histories remain visible after conditioning on $M$; (3) endpoint versus trajectory convergence; (4) interpretation of $H(M)$ as survival to the modal region; (5) limitations of period life tables, smoothing, and a single cumulative summary; and (6) implications for research on modal longevity, mortality compression, and lifespan inequality.}
+
+\section{Conclusion}
+
+This paper distinguishes two questions that are often combined when describing mortality progress. The modal age at death tells us where deaths are most concentrated. Cumulative hazard at the modal age tells us how much mortality has accumulated before the population reaches that point. The distinction follows from the mathematics: the mode is locally characterized by $\mu'(M)=\mu(M)^2$, while $H(M)$ integrates mortality over the entire preceding age range.
+
+Under Gompertz mortality, $H(M)=1-\alpha/\beta$ and is therefore close to one when baseline mortality is low. But this is a benchmark rather than an identity. Population mortality schedules can depart from it, and populations with nearly identical modal ages can in principle reach those ages after different amounts of accumulated mortality.
+
+The empirical analysis is designed to make that distinction directly observable. Rather than treating modal longevity as a complete description of mortality progress, we study the pair $(M,H(M))$. This separates convergence in the chronological endpoint of adult mortality from convergence in the mortality trajectory leading to that endpoint.
+
+\bibliographystyle{chicago}
+\bibliography{refs}
+
+\appendix
+\section{Analytical results for alternative mortality models}
+
+\subsection{Gompertz--Makeham}
+The complete derivation of $M$, $H(M)$, and the implied ordering relative to $M_H$ will be inserted here. The derivation will explicitly credit prior mode formulas where they are already available in the literature, particularly \citet{HoriuchiEtAl2013}, and distinguish those from algebra developed specifically for the present $H(M)$ comparison.
+
+\subsection{Kannisto}
+The complete derivation will be inserted here, with explicit connection to the late-life mortality deceleration literature \citep{ThatcherKannistoVaupel1998}.
+
+\subsection{Gamma-frailty Gompertz}
+The complete derivation will be inserted here, linking the population hazard to mortality selection under gamma frailty \citep{VaupelMantonStallard1979,VaupelYashin1985,Missov2013}.
+
+\section{Smoothing sensitivity}
+Alternative spline parameters and the raw discrete modal age are compared with the baseline estimates.
+
+\section{Second-order approximation}
+The second-order expansion of $\Delta_M$ and its empirical performance are reported here.
+
+\end{document}
