@@ -1,0 +1,6 @@
+source("R/01_download_hmd.R")
+source("R/03_build_metrics.R")
+source("R/04_matched_pairs.R")
+source("R/05_figures.R")
+source("R/06_sensitivity.R")
+message("Analysis complete. Send back data/derived/modal_metrics.csv, data/derived/matched_pairs_contemporary.csv, and the figures folder.")
