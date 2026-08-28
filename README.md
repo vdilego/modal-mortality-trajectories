@@ -20,8 +20,8 @@ considered jointly with the conventional adult modal age at death `M`.
 - `R/04_matched_pairs.R` — finds population-years with nearly equal `M` but maximally different `H(M)`.
 - `R/05_figures.R` — produces the main and diagnostic ggplot figures.
 - `R/06_sensitivity.R` — evaluates sensitivity of the estimated mode to spline smoothing.
-- `manuscript/main.tex` — first manuscript draft; Results and Discussion are intentionally left provisional.
-- `manuscript/refs.bib` — bibliography supplied with the project. Entries marked `[U]` in comments require verification before submission.
+- `manuscript/main.tex` — first manuscript draft; Results and Discussion are provisional.
+- `manuscript/refs.bib` — bibliography supplied with the project. 
 
 ## Reproducibility
 
@@ -40,15 +40,6 @@ The core outputs are:
 - `figures/fig3_sweden_transition.pdf`
 - `figures/fig4_matched_trajectories.pdf`
 
-## What to send back for drafting Results
-
-Please send:
-
-1. `data/derived/modal_metrics.csv`
-2. `data/derived/matched_pairs_contemporary.csv`
-3. the PDFs in `figures/`
-
-The Results and Discussion can then be written from the observed findings rather than anticipated patterns.
 
 ## Mathematical conventions
 
